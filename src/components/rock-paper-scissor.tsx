@@ -1,6 +1,6 @@
 "use client";
 //importing react  hooks
-import React , { useState } from "react";
+import React, { useState } from "react";
 //image component
 import Image from "next/image";
 
@@ -16,11 +16,19 @@ const RockPaperScissor = () => {
   const choices = ["Rock", "Paper", "Scissor"];
 
   // generates random option for computer
-  const getRandomChoice = () => {
-    return choices[Math.floor(Math.random() * choices.length)];
-  };
-
-  // determines the winner
+  const handleImageClick = (choice: string) => {
+      setPlayerChoice(choice);
+      // setComputerChoice(null);
+      const computer = getRandomChoice();
+      setComputerChoice(computer);
+      if(playerChoice && computer){
+      determineWinner(playerChoice, computer);
+      // setResult(null);
+  }};
+    
+    const getRandomChoice = () => {
+      return choices[Math.floor(Math.random() * choices.length)];
+    };
   const determineWinner = (player: string, computer: string) => {
     if (player === computer) {
       setResult("It's a tie!");
@@ -37,14 +45,13 @@ const RockPaperScissor = () => {
       setComputerScore(computerScore + 1);
     }
   };
-  // handle click enet of image
-  const handleImageClick = (choice: string) : void => {
-    setPlayerChoice(choice);
-    // setComputerChoice(null);
-    const computer = getRandomChoice();
-    setComputerChoice(computer);
-    determineWinner(playerChoice, computer);
-    // setResult(null);
+  //RESETING THE GAME
+  const resetGame = () => {
+    setPlayerChoice(null);
+    setComputerChoice(null);
+    setResult(null);
+    setPlayerScore(0);
+    setComputerScore(0);
   };
   //JSX code
   return (
@@ -88,6 +95,14 @@ const RockPaperScissor = () => {
             <span>Computers Score: </span> {computerScore}
           </p>
         </div>
+        {/* Reset Buuton */}
+        <button
+          onClick={resetGame}
+          className="mt-6 px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-700 transition-colors "
+        >
+          {" "}
+          Reset
+        </button>
       </div>
     </div>
   );
