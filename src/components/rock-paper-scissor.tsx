@@ -1,6 +1,6 @@
 "use client";
 //importing react  hooks
-import { useState } from "react";
+import React , { useState } from "react";
 //image component
 import Image from "next/image";
 
@@ -38,7 +38,7 @@ const RockPaperScissor = () => {
     }
   };
   // handle click enet of image
-  const handleImageClick = (choice: string) => {
+  const handleImageClick = (choice: string) : void => {
     setPlayerChoice(choice);
     // setComputerChoice(null);
     const computer = getRandomChoice();
@@ -74,7 +74,7 @@ const RockPaperScissor = () => {
               <span>Your Choice:</span> {playerChoice}
             </p>
             <p className="text-lg md:text-xl">
-              <span>Computer's Choice:</span> {computerChoice}
+              <span>Computers Choice:</span> {computerChoice}
             </p>
             <p className="font-bold text-xl md:text-2xl mt-4">{result}</p>
           </div>
@@ -85,7 +85,7 @@ const RockPaperScissor = () => {
             <span>Player Score: </span> {playerScore}
           </p>
           <p className="font-bold text-lg">
-            <span>Computer's Score: </span> {computerScore}
+            <span>Computers Score: </span> {computerScore}
           </p>
         </div>
       </div>
